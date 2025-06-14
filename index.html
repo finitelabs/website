@@ -1,43 +1,1136 @@
-
 <!doctype html>
 <html lang="en" class="h-100">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Finite Labs: The possiblities are boudned.">
+    <meta name="description"
+          content="Finite Labs: Custom software consulting, smart home automation, and Control4 system integrations.">
     <title>Finite Labs</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <meta name="theme-color" content="#000000">
-
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      .bg-dark {
-        background-color: black!important;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        :root {
+            --text-color: #f8f9fa;
+            --bg-color: #000000;
+            --accent-color: #a0a0a0;
+            --secondary-color: #a7a9ac;
+            --highlight-color: #d0d0d0;
+            --nav-bg: rgba(0, 0, 0, 0.8);
+            --card-bg: rgba(10, 10, 15, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
         }
-      }
+
+        [data-theme="light"] {
+            --text-color: #212529;
+            --bg-color: #f8f9fa;
+            --accent-color: #505050;
+            --secondary-color: #6c757d;
+            --highlight-color: #404040;
+            --nav-bg: rgba(248, 249, 250, 0.9);
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.5s ease;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        [data-theme="light"] body {
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3)), url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .theme-toggle-container {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1100;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            opacity: 0.4;
+            background: var(--card-bg);
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            opacity: 1;
+        }
+
+        .theme-toggle-menu {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 0.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            min-width: 120px;
+        }
+
+        .theme-toggle-menu.active {
+            display: flex;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .theme-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .theme-option i {
+            margin-right: 0.5rem;
+        }
+
+        .theme-option span {
+            font-size: 0.9rem;
+        }
+
+        .navbar {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            /*font-weight: 700;*/
+            /*font-size: 1.5rem;*/
+            color: var(--text-color) !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+            color: var(--text-color);
+            /*min-height: 75px;*/
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            transition: background-image 0.3s ease;
+        }
+
+        [data-theme="light"] .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6L24 24M6 24L24 6'/%3e%3c/svg%3e");
+        }
+
+        [data-theme="light"] .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6L24 24M6 24L24 6'/%3e%3c/svg%3e");
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: var(--nav-bg);
+                padding: 0 1rem 0.5rem 1rem ;
+                border-radius: 0.25rem;
+            }
+
+            .navbar-nav-collapse {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-link {
+                padding: 0.5rem 0;
+            }
+
+            .navbar-brand {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            margin: 0 1rem;
+            position: relative;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--highlight-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--highlight-color) !important;
+        }
+
+        .logo-container {
+            height: 50px;
+            margin-right: 1rem;
+        }
+
+        .logo-container img {
+            height: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            padding-top: 100px;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -10px;
+            left: 25%;
+            background-color: var(--highlight-color);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .card.h-100 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-button-container {
+            margin-top: auto;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--highlight-color);
+        }
+
+        .btn-outline-light {
+            border-color: var(--text-color);
+            color: var(--text-color);
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .specialty-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--highlight-color);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .contact-info {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.25rem;
+            color: var(--highlight-color);
+            margin-right: 1rem;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .contact-details {
+            flex: 1;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .social-icons a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: var(--highlight-color);
+        }
+
+        .footer-legal-links {
+            font-size: 0.7rem;
+        }
+
+        .footer-legal-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-legal-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
     </style>
-  </head>
-  <body class="d-flex h-100 text-center text-white bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <main class="px-3">
-        <img src="images/logo.png" height="80">
-        <p style="margin-top: 100px">
-          Looking for the Control4 Home Connect Driver? Check it out on <a href="https://drivercentral.io/platforms/control4-drivers/utility/home-connect-for-apple-home/">Driver Central</a>.
-        </p>
-      </main>
+</head>
+<body>
+<div class="theme-toggle-container">
+    <div class="theme-toggle-menu">
+        <div class="theme-option" onclick="setTheme('light')"><i class="bi bi-sun-fill"></i><span>Light</span></div>
+        <div class="theme-option" onclick="setTheme('dark')"><i class="bi bi-moon-fill"></i><span>Dark</span></div>
+        <div class="theme-option" onclick="setTheme('auto')"><i class="bi bi-circle-half"></i><span>Auto</span></div>
     </div>
-  </body>
+    <div class="theme-toggle" onclick="toggleThemeMenu()">
+        <i class="bi bi-sun-fill" id="light-icon" style="display: none;"></i>
+        <i class="bi bi-moon-fill" id="dark-icon"></i>
+        <i class="bi bi-circle-half" id="auto-icon" style="display: none;"></i>
+    </div>
+</div>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container" style="height: 50px">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#home" onclick="showTab('home')">
+            <div class="logo-container">
+                <img src="images/black-logo.svg" alt="Finite Labs Logo" id="logo-light" style="display: none;">
+                <img src="images/white-logo.svg" alt="Finite Labs Logo" id="logo-dark">
+            </div>
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-collapse">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#home" onclick="showTab('home')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#products" onclick="showTab('products')">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about" onclick="showTab('about')">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact" onclick="showTab('contact')">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Home Tab -->
+<div id="home" class="tab-content active">
+    <section class="hero-section">
+        <h1 class="hero-title fade-in">Innovative Software Solutions</h1>
+        <p class="hero-subtitle fade-in">
+            Welcome to Finite Labs, where technical excellence meets innovative smart home experiences.
+            We specialize in custom software solutions and seamless integrations with industry-leading platforms.
+        </p>
+        <div class="d-flex gap-3 fade-in">
+            <a href="#about" class="btn btn-outline-light" onclick="showTab('about')">Learn More</a>
+            <a href="#contact" class="btn btn-outline-light" onclick="showTab('contact')">Get in Touch</a>
+        </div>
+    </section>
+    <div class="container">
+        <section class="py-5">
+            <h2 class="section-title text-center mb-5">Our Expertise</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="specialty-icon">
+                            <i class="bi bi-code-square"></i>
+                        </div>
+                        <h3 class="card-title">Custom Software</h3>
+                        <p>Tailored software consulting and development solutions designed to meet your unique business
+                            requirements. We build scalable, robust applications that drive your business forward.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="specialty-icon">
+                            <i class="bi bi-house"></i>
+                        </div>
+                        <h3 class="card-title">Smart Home</h3>
+                        <p>Cutting-edge smart home automation solutions that transform how you interact with your living
+                            space. Experience the future of home technology with our innovative systems.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="specialty-icon">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h3 class="card-title">Control4 Integration</h3>
+                        <p>Expert Control4 system integrations and custom driver development for seamless home
+                            automation. We create solutions that make complex technology simple to use.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- About Tab -->
+<div id="about" class="tab-content">
+    <div class="container py-5">
+        <h2 class="section-title text-center mb-5">About</h2>
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-12">
+                <h3 class="mb-4">Our Story</h3>
+                <p>Finite Labs was founded with a vision to bridge the gap between cutting-edge technology and
+                    practical, user-friendly solutions. We believe that the most advanced technology should also be the
+                    most accessible.</p>
+                <p>Our team combines deep technical expertise with a passion for innovation, allowing us to tackle
+                    complex challenges and deliver exceptional results for our clients.</p>
+                <p>From custom software development to smart home automation and Control4 integrations, we're committed
+                    to pushing the boundaries of what's possible while maintaining a focus on reliability and user
+                    experience.</p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                <div class="card h-100">
+                    <h3 class="card-title">Meet Our Founder</h3>
+                    <p>Derek Miller is a technology enthusiast and software engineer with a passion for creating
+                        innovative solutions that make a difference. With extensive experience in software development
+                        and smart home automation, Derek founded Finite Labs to help clients harness the power of
+                        technology in their homes and businesses.</p>
+                    <p>Connect with Derek on <a href="https://www.linkedin.com/in/derek-miller"
+                                                target="_blank">LinkedIn</a> to learn more about his work and vision for
+                        Finite Labs. </p>
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="card h-100">
+                    <h3 class="card-title">Our Mission</h3>
+                    <p>At Finite Labs, our mission is to create technology solutions that enhance people's lives through
+                        innovation, quality, and exceptional service. We strive to:</p>
+                    <ul>
+                        <li>Develop software and automation systems that are both powerful and user-friendly</li>
+                        <li>Push the boundaries of what's possible in home automation</li>
+                        <li>Provide personalized services that addresses each client's unique needs</li>
+                        <li>Contribute to the open-source community and advance the field of smart home technology</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Products Tab -->
+<div id="products" class="tab-content">
+    <div class="container py-5">
+        <h2 class="section-title text-center mb-5">Our Products</h2>
+        <div class="row mb-5">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <h3 class="card-title">ESPHome Control4 Driver</h3>
+                    <p>Our ESPHome Control4 Driver enables seamless integration between Control4 systems and
+                        ESPHome-powered devices, opening up a world of possibilities for your smart home setup.</p>
+                    <p>With this driver, you can:</p>
+                    <ul>
+                        <li>Control ESPHome devices directly from your Control4 interface</li>
+                        <li>Create complex automation scenarios involving ESPHome sensors and actuators</li>
+                        <li>Monitor device status and receive notifications</li>
+                        <li>Expand your smart home capabilities with affordable DIY components</li>
+                    </ul>
+                    <div class="card-button-container">
+                        <a href="https://drivercentral.io/platforms/control4-drivers/utility/esphome/"
+                           target="_blank" class="btn btn-outline-light mt-3">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <h3 class="card-title">Home Connect for Apple Home Driver</h3>
+                    <p>Our Home Connect for Apple Home Driver bridges the gap between Control4 and Apple HomeKit,
+                        allowing you to control your Control4 system using Apple's Home app and Siri.</p>
+                    <p>Key features include:</p>
+                    <ul>
+                        <li>Voice control of Control4 devices using Siri</li>
+                        <li>Integration with Apple Home scenes and automations</li>
+                        <li>Remote access to your Control4 system through the Apple Home app</li>
+                        <li>Seamless experience for Apple users in Control4 environments</li>
+                    </ul>
+                    <div class="card-button-container">
+                        <a href="https://drivercentral.io/platforms/control4-drivers/utility/home-connect-for-apple-home/"
+                           target="_blank" class="btn btn-outline-light mt-3">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mb-5">
+            <h3 class="mb-4">Open Source Contributions</h3>
+            <p>At Finite Labs, we believe in giving back to the community. Check out our open-source projects and
+                contributions on GitHub:</p>
+            <a href="https://github.com/finitelabs" target="_blank" class="btn btn-outline-light mt-3">
+                <i class="bi bi-github me-2"></i>Visit Our GitHub </a>
+        </div>
+        <div class="card h-100">
+            <h3 class="card-title">Custom Solutions</h3>
+            <p>Need something specific for your project? We specialize in creating custom software solutions and drivers
+                tailored to your exact requirements.</p>
+            <p>Our development team can create:</p>
+            <ul>
+                <li>Custom Control4 drivers for specific devices or use cases</li>
+                <li>Specialized software applications for smart home management</li>
+                <li>Integration solutions for connecting disparate systems</li>
+                <li>Mobile applications for remote control and monitoring</li>
+            </ul>
+            <div class="card-button-container">
+                <a href="#contact" class="btn btn-outline-light mt-3" onclick="showTab('contact')">Contact Us for Custom
+                    Solutions</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact Tab -->
+<div id="contact" class="tab-content">
+    <div class="container py-5">
+        <h2 class="section-title text-center mb-5">Get in Touch</h2>
+        <div class="row">
+            <div class="col-lg-7 mb-5">
+                <div class="card h-100">
+                    <h3 class="card-title">Send Us a Message</h3>
+                    <form action="https://formsubmit.co/hello@finitelabs.com" method="POST" id="contactForm">
+                        <input type="hidden" name="_subject" value="New message from Finite Labs website">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://finitelabs.com?thankyou=true#contact">
+                        <input type="text" name="_honey" style="display:none">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject"
+                                   placeholder="How can we help?" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5"
+                                      placeholder="Tell us about your project or inquiry..." required></textarea>
+                        </div>
+                        <div class="card-button-container">
+                            <button type="submit" class="btn btn-outline-light" id="submitButton">Send Message</button>
+                        </div>
+                        <div class="mt-3" id="formStatus" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-5">
+                <div class="card h-100">
+                    <h3 class="card-title">Contact Information</h3>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>
+                                <a href="mailto:hello@finitelabs.com">hello@finitelabs.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="bi bi-linkedin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>LinkedIn</h4>
+                            <p>
+                                <a href="https://www.linkedin.com/in/derek-miller" target="_blank">Connect with our
+                                    founder</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="bi bi-github"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>GitHub</h4>
+                            <p>
+                                <a href="https://github.com/finitelabs" target="_blank">Follow our open-source
+                                    projects</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Privacy Policy Tab -->
+<div id="privacy-policy" class="tab-content">
+    <div class="container py-5">
+        <div class="card">
+            <div class="card-body">
+                <h2>Privacy Policy</h2>
+                <p>Last updated: June 2025</p>
+                <h4>Introduction</h4>
+                <p>Finite Labs ("we," "our," or "us") respects your privacy. This privacy policy explains our approach
+                    to data collection and cookies and confirms our commitment to ensuring your privacy when visiting
+                    our website.</p>
+                <h4>No Data Collection</h4>
+                <p>We do not collect or store any personal data from visitors to our website.</p>
+                <h4>No Cookies</h4>
+                <p>Our website does not use cookies or any other tracking technologies to collect information about your
+                    browsing activities.</p>
+                <h4>Contact Form</h4>
+                <p>If you choose to contact us through our contact form, the information you provide (such as your name
+                    and email address) is only used to respond to your inquiry and is not stored on our servers or used
+                    for any other purpose.</p>
+                <h4>Third-Party Links</h4>
+                <p>Our website may contain links to third-party websites. Please note that we have no control over how
+                    these third-party websites collect or use your data. We encourage you to review the privacy policies
+                    of any third-party websites you visit.</p>
+                <h4>Your Privacy</h4>
+                <p>Since we do not collect or store any personal data, there are no privacy concerns regarding your data
+                    on our website. You can browse our website without worrying about your personal information being
+                    tracked or stored.</p>
+                <h4>Changes to This Privacy Policy</h4>
+                <p>We may update our privacy policy from time to time. We will notify you of any changes by posting the
+                    new privacy policy on this page and updating the "Last updated" date at the top of this privacy
+                    policy.</p>
+                <h4>Contact Us</h4>
+                <p>If you have any questions about this privacy policy or our privacy practices, please contact us at:
+                    <a href="mailto:hello@finitelabs.com">hello@finitelabs.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Terms of Service Tab -->
+<div id="terms-of-service" class="tab-content">
+    <div class="container py-5">
+        <div class="card">
+            <div class="card-body">
+                <h2>Terms of Service</h2>
+                <p>Last updated: June 2025</p>
+                <h4>Introduction</h4>
+                <p>Welcome to Finite Labs. These Terms of Service ("Terms") govern your use of our website located at <a
+                        href="https://finitelabs.com">finitelabs.com</a> (the "Service") operated by Finite Labs ("us",
+                    "we", or "our"). </p>
+                <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any
+                    part of the terms, then you may not access the Service.</p>
+                <h4>Use of Our Service</h4>
+                <p>The Service is provided for informational purposes only. We make no representations or warranties of
+                    any kind, express or implied, about the completeness, accuracy, reliability, suitability, or
+                    availability of the Service or the information, products, services, or related graphics contained on
+                    the Service for any purpose.</p>
+                <h4>Intellectual Property</h4>
+                <p>The Service and its original content, features, and functionality are and will remain the exclusive
+                    property of Finite Labs and its licensors. The Service is protected by copyright, trademark, and
+                    other laws of both the United States and foreign countries. Our trademarks and trade dress may not
+                    be used in connection with any product or service without the prior written consent of Finite
+                    Labs.</p>
+                <h4>User Conduct</h4>
+                <p>You agree not to use the Service:</p>
+                <ul>
+                    <li>In any way that violates any applicable national or international law or regulation.</li>
+                    <li>To transmit, or procure the sending of, any advertising or promotional material, including any
+                        "junk mail", "chain letter," "spam," or any other similar solicitation.
+                    </li>
+                    <li>To impersonate or attempt to impersonate Finite Labs, a Finite Labs employee, another user, or
+                        any other person or entity.
+                    </li>
+                    <li>In any way that infringes upon the rights of others, or in any way is illegal, threatening,
+                        fraudulent, or harmful, or in connection with any unlawful, illegal, fraudulent, or harmful
+                        purpose or activity.
+                    </li>
+                </ul>
+                <h4>Links to Other Websites</h4>
+                <p>Our Service may contain links to third-party websites or services that are not owned or controlled by
+                    Finite Labs.</p>
+                <p>Finite Labs has no control over, and assumes no responsibility for, the content, privacy policies, or
+                    practices of any third-party websites or services. You further acknowledge and agree that Finite
+                    Labs shall not be responsible or liable, directly or indirectly, for any damage or loss caused or
+                    alleged to be caused by or in connection with the use of or reliance on any such content, goods, or
+                    services available on or through any such websites or services.</p>
+                <p>We strongly advise you to read the terms and conditions and privacy policies of any third-party
+                    websites or services that you visit.</p>
+                <h4>Termination</h4>
+                <p>We may terminate or suspend access to our Service immediately, without prior notice or liability, for
+                    any reason whatsoever, including without limitation if you breach the Terms.</p>
+                <p>All provisions of the Terms which by their nature should survive termination shall survive
+                    termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity,
+                    and limitations of liability.</p>
+                <h4>Disclaimer</h4>
+                <p>Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS
+                    AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or
+                    implied, including, but not limited to, implied warranties of merchantability, fitness for a
+                    particular purpose, non-infringement, or course of performance.</p>
+                <p>Finite Labs, its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will
+                    function uninterrupted, secure, or available at any particular time or location; b) any errors or
+                    defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the
+                    results of using the Service will meet your requirements.</p>
+                <h4>Limitation of Liability</h4>
+                <p>In no event shall Finite Labs, nor its directors, employees, partners, agents, suppliers, or
+                    affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages,
+                    including without limitation, loss of profits, data, use, goodwill, or other intangible losses,
+                    resulting from (i) your access to or use of or inability to access or use the Service; (ii) any
+                    conduct or content of any third party on the Service; (iii) any content obtained from the Service;
+                    and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on
+                    warranty, contract, tort (including negligence), or any other legal theory, whether or not we have
+                    been informed of the possibility of such damage.</p>
+                <h4>Governing Law</h4>
+                <p>These Terms shall be governed and construed in accordance with the laws of the United States, without
+                    regard to its conflict of law provisions.</p>
+                <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those
+                    rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the
+                    remaining provisions of these Terms will remain in effect.</p>
+                <h4>Changes to Terms</h4>
+                <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a
+                    revision is material, we will try to provide at least 30 days' notice prior to any new terms taking
+                    effect. What constitutes a material change will be determined at our sole discretion.</p>
+                <p>By continuing to access or use our Service after those revisions become effective, you agree to be
+                    bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
+                <h4>Contact Us</h4>
+                <p>If you have any questions about these Terms, please contact us at: <a
+                        href="mailto:hello@finitelabs.com">hello@finitelabs.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Disclaimer Tab -->
+<div id="disclaimer" class="tab-content">
+    <div class="container py-5">
+        <div class="card">
+            <div class="card-body">
+                <h2>Disclaimer</h2>
+                <p>Last updated: June 2025</p>
+                <h4>Website Disclaimer</h4>
+                <p>The information provided by Finite Labs ("we," "us," or "our") on our website at <a
+                        href="https://finitelabs.com">finitelabs.com</a> (the "Site") is for general informational
+                    purposes only. All information on the Site is provided in good faith, however, we make no
+                    representation or warranty of any kind, express or implied, regarding the accuracy, adequacy,
+                    validity, reliability, availability, or completeness of any information on the Site. </p>
+                <p>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred
+                    as a result of the use of the Site or reliance on any information provided on the Site. Your use of
+                    the Site and your reliance on any information on the Site is solely at your own risk.</p>
+                <h4>External Links Disclaimer</h4>
+                <p>The Site may contain (or you may be sent through the Site) links to other websites or content
+                    belonging to or originating from third parties or links to websites and features in banners or other
+                    advertising. Such external links are not investigated, monitored, or checked for accuracy, adequacy,
+                    validity, reliability, availability, or completeness by us.</p>
+                <p>We do not warrant, endorse, guarantee, or assume responsibility for the accuracy or reliability of
+                    any information offered by third-party websites linked through the Site or any website or feature
+                    linked in any banner or other advertising. We will not be a party to or in any way be responsible
+                    for monitoring any transaction between you and third-party providers of products or services.</p>
+                <h4>Professional Disclaimer</h4>
+                <p>The Site cannot and does not contain software engineering advice. The software engineering
+                    information is provided for general informational and educational purposes only and is not a
+                    substitute for professional advice. Accordingly, before taking any actions based upon such
+                    information, we encourage you to consult with the appropriate professionals.</p>
+                <p>We do not provide any kind of software engineering advice. The use or reliance of any information
+                    contained on the Site is solely at your own risk.</p>
+                <h4>Testimonials Disclaimer</h4>
+                <p>The Site may contain testimonials by users of our products and/or services. These testimonials
+                    reflect the real-life experiences and opinions of such users. However, the experiences are personal
+                    to those particular users, and may not necessarily be representative of all users of our products
+                    and/or services. We do not claim, and you should not assume, that all users will have the same
+                    experiences.</p>
+                <p>Your individual results may vary. The testimonials on the Site are submitted in various forms such as
+                    text, audio and/or video, and are reviewed by us before being posted. They appear on the Site
+                    verbatim as given by the users, except for the correction of grammar or typing errors. Some
+                    testimonials may have been shortened for the sake of brevity where the full testimonial contained
+                    extraneous information not relevant to the general public.</p>
+                <p>The views and opinions contained in the testimonials belong solely to the individual user and do not
+                    reflect our views and opinions.</p>
+                <h4>Errors and Omissions Disclaimer</h4>
+                <p>While we have made every attempt to ensure that the information contained in this site has been
+                    obtained from reliable sources, Finite Labs is not responsible for any errors or omissions or for
+                    the results obtained from the use of this information. All information in this site is provided "as
+                    is", with no guarantee of completeness, accuracy, timeliness or of the results obtained from the use
+                    of this information, and without warranty of any kind, express or implied.</p>
+                <p>Finite Labs may make changes to the information contained in this site at any time without notice.
+                    However, Finite Labs does not make any commitment to update the information.</p>
+                <h4>"Use at Your Own Risk" Disclaimer</h4>
+                <p>All information in this site is provided "as is", with no guarantee of completeness, accuracy,
+                    timeliness or of the results obtained from the use of this information, and without warranty of any
+                    kind, express or implied.</p>
+                <p>Finite Labs will not be liable to you or anyone else for any decision made or action taken in
+                    reliance on the information given by the Site or for any consequential, special, or similar damages,
+                    even if advised of the possibility of such damages.</p>
+                <h4>Contact Us</h4>
+                <p>If you have any questions about this Disclaimer, please contact us at: <a
+                        href="mailto:hello@finitelabs.com">hello@finitelabs.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="pt-3 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start align-self-center">
+                <div class="social-icons">
+                    <a href="https://github.com/finitelabs" target="_blank">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/derek-miller" target="_blank">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="mailto:hello@finitelabs.com">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 text-center text-md-end align-self-center">
+                <p class="mb-0">&copy; 2025 Finite Labs. All rights reserved.</p>
+                <div class="mt-0">
+                    <small class="footer-legal-links">
+                        <a href="#privacy-policy" onclick="showTab('privacy-policy')">Privacy Policy</a> | <a
+                            href="#terms-of-service" onclick="showTab('terms-of-service')">Terms of Service</a> | <a
+                            href="#disclaimer" onclick="showTab('disclaimer')">Disclaimer</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+<script>
+    // Check for saved theme preference or use preferred color scheme
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const savedTheme = localStorage.getItem("theme");
+
+    // Tab navigation
+    function showTab(tabId) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        // Show selected tab
+        document.getElementById(tabId).classList.add('active');
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        // Check if there's a nav link for this tab before adding the active class
+        const navLink = document.querySelector(`.nav-link[href="#${tabId}"]`);
+        if (navLink) {
+            navLink.classList.add('active');
+        }
+        // Scroll to top
+        window.scrollTo(0, 0);
+        // Update URL hash
+        window.location.hash = tabId;
+
+        // Close the navbar collapse if it's open (on mobile)
+        const navbarCollapse = document.getElementById('navbarNav');
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+        }
+    }
+
+    // Check for hash in URL and initialize theme on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle tab navigation
+        const hash = window.location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+            showTab(hash);
+        }
+        // Initialize fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        // Apply theme based on saved preference or system preference
+        if (savedTheme) {
+            // If user has manually set a preference, use that
+            applyTheme(savedTheme);
+        } else {
+            // Otherwise use auto mode (system preference)
+            applyTheme('auto', true);
+        }
+    });
+
+    // Toggle theme menu visibility
+    function toggleThemeMenu() {
+        const menu = document.querySelector('.theme-toggle-menu');
+        menu.classList.toggle('active');
+    }
+
+    // Close theme menu when clicking outside
+    document.addEventListener('click', function (event) {
+        const container = document.querySelector('.theme-toggle-container');
+        if (!container.contains(event.target)) {
+            document.querySelector('.theme-toggle-menu').classList.remove('active');
+        }
+    });
+
+    // Function to apply theme based on preference
+    function applyTheme(theme, savePreference = false) {
+        // If theme is 'auto', determine based on system preference
+        const actualTheme = theme === 'auto' ? (prefersDarkScheme.matches ? 'dark' : 'light') : theme;
+        // Apply the theme to the document
+        document.documentElement.setAttribute("data-theme", actualTheme);
+        // Update logos and icons based on the actual theme
+        if (actualTheme === "light") {
+            document.getElementById("logo-light").style.display = "inline";
+            document.getElementById("logo-dark").style.display = "none";
+        } else {
+            document.getElementById("logo-light").style.display = "none";
+            document.getElementById("logo-dark").style.display = "inline";
+        }
+        // Update the theme toggle icon based on the selected theme mode
+        document.getElementById("light-icon").style.display = theme === 'light' ? "inline" : "none";
+        document.getElementById("dark-icon").style.display = theme === 'dark' ? "inline" : "none";
+        document.getElementById("auto-icon").style.display = theme === 'auto' ? "inline" : "none";
+        // Save preference if requested
+        if (savePreference) {
+            localStorage.setItem("theme", theme);
+        }
+    }
+
+    // Set theme based on user selection
+    function setTheme(theme) {
+        applyTheme(theme, true);
+        toggleThemeMenu(); // Close the menu after selection
+
+        // Close the navbar collapse if it's open (on mobile)
+        const navbarCollapse = document.getElementById('navbarNav');
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+        }
+    }
+
+    // Listen for changes in system color scheme preference
+    prefersDarkScheme.addEventListener("change", () => {
+        // Only update automatically if in auto mode
+        if (localStorage.getItem("theme") === 'auto') {
+            applyTheme('auto');
+        }
+    });
+    // // Navbar scroll effect
+    // window.addEventListener('scroll', function () {
+    //     const navbar = document.querySelector('.navbar');
+    //     if (window.scrollY > 50) {
+    //         navbar.style.padding = '0.5rem 0';
+    //         navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    //     } else {
+    //         navbar.style.padding = '1rem 0';
+    //         navbar.style.boxShadow = 'none';
+    //     }
+    // });
+    // Contact form handling
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check for thank you parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const thankYou = urlParams.get('thankyou');
+        const formStatus = document.getElementById('formStatus');
+        if (thankYou === 'true' && formStatus) {
+            // Show thank you message
+            formStatus.style.display = 'block';
+            formStatus.className = 'alert alert-success mt-3';
+            formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+            // Hide thank you message after 5 seconds
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+                // Remove the thankyou parameter from URL
+                const newUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, document.title, newUrl);
+            }, 5000);
+        }
+        // Add loading spinner to submit button
+        const contactForm = document.getElementById('contactForm');
+        const submitButton = document.getElementById('submitButton');
+        if (contactForm && submitButton) {
+            contactForm.addEventListener('submit', function () {
+                // Show loading spinner
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+            });
+        }
+    });
+</script>
+</body>
 </html>
