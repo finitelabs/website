@@ -312,6 +312,15 @@
             color: var(--highlight-color);
         }
 
+        .theme-light-only,
+        [data-theme="light"] .theme-dark-only {
+            display: none;
+        }
+
+        [data-theme="light"] .theme-light-only {
+            display: inline;
+        }
+
         .btn-outline-light {
             border-color: var(--text-color);
             color: var(--text-color);
@@ -590,6 +599,31 @@
     <div class="container py-5">
         <h2 class="section-title text-center mb-5">Our Products</h2>
         <div class="row mb-5">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <h3 class="card-title">Universal Zigbee 3.0 Driver</h3>
+                    <div class="product-container d-flex align-items-center justify-content-center mt-2 mb-4">
+                        <img src="images/zigbee3-light.png" alt="Universal Zigbee 3.0 Driver"
+                             class="theme-light-only">
+                        <img src="images/zigbee3-dark.png" alt="Universal Zigbee 3.0 Driver"
+                             class="theme-dark-only">
+                    </div>
+                    <p>Our Universal Zigbee 3.0 Driver brings Zigbee 3.0 devices from many brands into Control4 with
+                        one driver, instead of a separate driver for each brand. It requires Control4 OS 4.3 or
+                        later.</p>
+                    <p>Key features include:</p>
+                    <ul>
+                        <li>Over 5,000 supported models from more than 500 vendors, including Philips Hue and IKEA</li>
+                        <li>Direct connection to the controller's Zigbee network, with no hub or bridge</li>
+                        <li>Bulbs, locks, switches and plugs as standard Control4 lights, locks and relays</li>
+                        <li>Sensor readings as variables and button presses as programming events</li>
+                    </ul>
+                    <div class="card-button-container">
+                        <a href="https://drivercentral.io/platforms/control4-drivers/utility/zigbee3/"
+                           target="_blank" class="btn btn-outline-light mt-3">Learn More</a>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-6 mb-4">
                 <div class="card h-100">
                     <h3 class="card-title">ESPHome Control4 Driver</h3>
