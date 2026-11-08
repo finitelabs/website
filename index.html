@@ -341,7 +341,6 @@
             letter-spacing: -0.025em;
             margin-bottom: 2rem;
             display: block;
-            text-align: left !important;
         }
 
         .card {
@@ -404,12 +403,16 @@
         }
 
         .btn-outline-light:hover,
-        .btn-outline-light:focus {
+        .btn-outline-light:focus-visible {
             background-color: var(--chip-bg);
             border-color: var(--chip-bg);
             color: var(--chip-fg);
             transform: translateY(-2px);
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-outline-light:focus:not(:focus-visible) {
+            box-shadow: none;
         }
 
         .btn-solid {
@@ -621,7 +624,7 @@
 <!-- About Tab -->
 <div id="about" class="tab-content">
     <div class="container py-5">
-        <h2 class="section-title text-center mb-5">About</h2>
+        <h2 class="section-title mb-5">About</h2>
         <div class="row align-items-center mb-5">
             <div class="col-lg-12">
                 <p>Finite Labs builds Control4 drivers. We sell them on DriverCentral, publish most of them on GitHub,
@@ -655,7 +658,7 @@
 <!-- Products Tab -->
 <div id="products" class="tab-content">
     <div class="container py-5">
-        <h2 class="section-title text-center mb-5">Our Drivers</h2>
+        <h2 class="section-title mb-5">Our Drivers</h2>
         <div class="row mb-5">
             <div class="col-lg-6 mb-4">
                 <div class="card h-100">
@@ -827,7 +830,7 @@
 <!-- Contact Tab -->
 <div id="contact" class="tab-content">
     <div class="container py-5">
-        <h2 class="section-title text-center mb-4">Get in Touch</h2>
+        <h2 class="section-title mb-4">Get in Touch</h2>
         <p class="mb-5">Questions about a driver, or need one we don't have yet? Send us a message.</p>
         <div class="row">
             <div class="col-lg-7 mb-5">
