@@ -11,52 +11,92 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <meta name="theme-color" content="#000000">
     <style>
         :root {
-            --text-color: #f8f9fa;
-            --bg-color: #000000;
-            --accent-color: #a0a0a0;
-            --secondary-color: #a7a9ac;
-            --highlight-color: #d0d0d0;
-            --nav-bg: rgba(0, 0, 0, 0.8);
-            --card-bg: rgba(10, 10, 15, 0.7);
-            --border-color: rgba(255, 255, 255, 0.1);
+            --text-color: #eef0f4;
+            --muted-color: #a3aab6;
+            --bg-color: #0c0e12;
+            --ground-a: #0c0e12;
+            --ground-b: #12141a;
+            --accent-color: #9aa4ff;
+            --glow: rgba(154, 164, 255, 0.20);
+            --glow-soft: rgba(154, 164, 255, 0.10);
+            --dots: rgba(255, 255, 255, 0.06);
+            --highlight-color: #ffffff;
+            --nav-bg: rgba(12, 14, 18, 0.80);
+            --card-bg: rgba(24, 26, 33, 0.72);
+            --card-hover: rgba(30, 33, 42, 0.85);
+            --border-color: rgba(255, 255, 255, 0.10);
+            --chip-bg: #ffffff;
+            --chip-fg: #111318;
+            --line-border: rgba(255, 255, 255, 0.35);
+            --line-bg: rgba(255, 255, 255, 0.04);
+            --input-bg: #0f1116;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
         }
 
         [data-theme="light"] {
-            --text-color: #212529;
-            --bg-color: #f8f9fa;
-            --accent-color: #505050;
-            --secondary-color: #6c757d;
-            --highlight-color: #404040;
-            --nav-bg: rgba(248, 249, 250, 0.9);
-            --card-bg: rgba(255, 255, 255, 0.6);
-            --border-color: rgba(0, 0, 0, 0.1);
+            --text-color: #15181e;
+            --muted-color: #5c6370;
+            --bg-color: #f4f5f8;
+            --ground-a: #f7f8fb;
+            --ground-b: #eceef4;
+            --accent-color: #4b55c8;
+            --glow: rgba(75, 85, 200, 0.12);
+            --glow-soft: rgba(75, 85, 200, 0.06);
+            --dots: rgba(17, 19, 24, 0.07);
+            --highlight-color: #0f1116;
+            --nav-bg: rgba(247, 248, 251, 0.85);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-hover: #ffffff;
+            --border-color: rgba(17, 19, 24, 0.10);
+            --chip-bg: #15181e;
+            --chip-fg: #ffffff;
+            --line-border: rgba(17, 19, 24, 0.25);
+            --line-bg: rgba(17, 19, 24, 0.03);
+            --input-bg: #ffffff;
+            --shadow: 0 18px 40px rgba(17, 19, 24, 0.14);
         }
 
         * {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: all 0.5s ease;
-            font-family: 'Roboto', sans-serif;
-            overflow-x: hidden;
-            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
+            background-image: radial-gradient(900px 640px at 88% 8%, var(--glow), transparent 70%),
+                radial-gradient(800px 620px at 0% 100%, var(--glow-soft), transparent 70%),
+                linear-gradient(100deg, var(--ground-a) 0%, var(--ground-b) 100%);
             background-attachment: fixed;
-            background-position: center;
+            color: var(--text-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            letter-spacing: -0.005em;
         }
 
-        [data-theme="light"] body {
-            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3)), url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background-image: radial-gradient(var(--dots) 1.2px, transparent 1.2px);
+            background-size: 26px 26px;
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.9) 100%);
+            -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.9) 100%);
+        }
+
+        a {
+            color: var(--accent-color);
+        }
+
+        a:hover {
+            color: var(--highlight-color);
         }
 
         .theme-toggle-container {
@@ -71,7 +111,6 @@
             font-size: 1.5rem;
             color: var(--text-color);
             opacity: 0.4;
-            background: var(--card-bg);
             transition: opacity 0.3s ease;
         }
 
@@ -84,9 +123,11 @@
             top: 50px;
             right: 0;
             background: var(--card-bg);
-            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 0.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
             display: none;
             flex-direction: column;
             min-width: 120px;
@@ -101,12 +142,12 @@
             align-items: center;
             padding: 0.5rem 1rem;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 8px;
             transition: background-color 0.2s ease;
         }
 
         .theme-option:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: var(--line-bg);
         }
 
         .theme-option i {
@@ -120,6 +161,7 @@
         .navbar {
             background-color: var(--nav-bg);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
             padding: 1rem 0;
             position: fixed;
@@ -129,15 +171,12 @@
         }
 
         .navbar-brand {
-            /*font-weight: 700;*/
-            /*font-size: 1.5rem;*/
             color: var(--text-color) !important;
         }
 
         .navbar-toggler {
             border: none;
             color: var(--text-color);
-            /*min-height: 75px;*/
         }
 
         .navbar-toggler:focus {
@@ -165,7 +204,7 @@
         @media (max-width: 991.98px) {
             .navbar-collapse {
                 background-color: var(--nav-bg);
-                padding: 0 1rem 0.5rem 1rem ;
+                padding: 0 1rem 0.5rem 1rem;
                 border-radius: 0.25rem;
             }
 
@@ -189,7 +228,7 @@
             color: var(--text-color) !important;
             margin: 0 1rem;
             position: relative;
-            font-weight: 400;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
 
@@ -200,7 +239,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--highlight-color);
+            background-color: var(--accent-color);
             transition: width 0.3s ease;
         }
 
@@ -237,58 +276,126 @@
             transform: translateY(0);
         }
 
-        .hero-section {
-            height: 100vh;
+        .hero {
+            padding: 4.5rem 0 3.5rem;
+        }
+
+        .hero-inner {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 0 1rem;
+            gap: 2.5rem;
+        }
+
+        .hero-text {
+            flex: 1 1 55%;
+            min-width: 0;
         }
 
         .hero-title {
-            font-size: 4rem;
-            font-weight: 700;
+            color: var(--highlight-color);
+            font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+            font-weight: 750;
+            letter-spacing: -0.028em;
+            line-height: 1.05;
+            margin: 0 0 1.75rem;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
             margin-bottom: 1.5rem;
-            letter-spacing: -1px;
+        }
+
+        .chip {
+            height: 48px;
+            padding: 0 1.25rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .chip-solid {
+            background: var(--chip-bg);
+            color: var(--chip-fg);
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .chip-line {
+            color: var(--text-color);
+            border: 2px solid var(--line-border);
+            background: var(--line-bg);
+            font-weight: 500;
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
+            color: var(--muted-color);
+            font-size: 1.3rem;
+            line-height: 1.5;
+            max-width: 36rem;
+            margin: 0 0 2rem;
+        }
+
+        .hero-art {
+            flex: 1 1 45%;
+            min-width: 0;
+        }
+
+        .hero-art svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        [data-theme="light"] .hero-art g[stroke="rgba(255,255,255,0.22)"] {
+            stroke: rgba(17, 19, 24, 0.25);
+        }
+
+        [data-theme="light"] .hero-art #flLink stop:last-child {
+            stop-color: #15181e;
+        }
+
+        .banner-carousel {
+            padding-bottom: 3rem;
+        }
+
+        .banner-carousel img {
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .banner-carousel .carousel-indicators {
+            bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .banner-carousel .carousel-indicators [data-bs-target] {
+            background-color: var(--text-color);
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            color: var(--highlight-color);
+            font-size: 2.4rem;
+            font-weight: 750;
+            letter-spacing: -0.025em;
             margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            bottom: -10px;
-            left: 25%;
-            background-color: var(--highlight-color);
+            display: block;
+            text-align: left !important;
         }
 
         .card {
             background-color: var(--card-bg);
-            border-radius: 8px;
+            border-radius: 16px;
             padding: 2rem;
             margin-bottom: 2rem;
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             text-align: left;
+            color: var(--text-color);
         }
 
         .card.h-100 {
@@ -301,15 +408,22 @@
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            background-color: var(--card-hover);
+            box-shadow: var(--shadow);
         }
 
         .card-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
+            letter-spacing: -0.015em;
             margin-bottom: 1rem;
             color: var(--highlight-color);
+        }
+
+        .card p,
+        .card li {
+            color: var(--muted-color);
         }
 
         .theme-light-only,
@@ -322,36 +436,28 @@
         }
 
         .btn-outline-light {
-            border-color: var(--text-color);
+            border: 2px solid var(--line-border);
+            background: var(--line-bg);
             color: var(--text-color);
-            padding: 0.75rem 2rem;
-            font-weight: 500;
-            border-radius: 30px;
+            padding: 0.7rem 1.4rem;
+            font-weight: 600;
+            border-radius: 12px;
             transition: all 0.3s ease;
         }
 
-        .btn-outline-light:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .btn-outline-light:hover,
+        .btn-outline-light:focus {
+            background-color: var(--chip-bg);
+            border-color: var(--chip-bg);
+            color: var(--chip-fg);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
         }
 
-        .specialty-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--highlight-color);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.1);
+        .btn-solid {
+            background: var(--chip-bg);
+            border-color: var(--chip-bg);
+            color: var(--chip-fg);
         }
 
         .contact-info {
@@ -374,12 +480,40 @@
 
         .contact-details h4 {
             margin-bottom: 0.25rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--highlight-color);
+        }
+
+        .form-label {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-control {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.65rem 0.85rem;
+        }
+
+        .form-control::placeholder {
+            color: var(--muted-color);
+            opacity: 0.8;
+        }
+
+        .form-control:focus {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--glow);
         }
 
         footer {
             background-color: var(--nav-bg);
             backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border-color);
             padding: 2rem 0;
             margin-top: auto;
         }
@@ -393,7 +527,7 @@
         }
 
         .social-icons a:hover {
-            color: var(--highlight-color);
+            color: var(--accent-color);
         }
 
         .footer-legal-links {
@@ -401,7 +535,7 @@
         }
 
         .footer-legal-links a {
-            color: var(--secondary-color);
+            color: var(--muted-color);
             text-decoration: none;
             transition: opacity 0.3s ease;
         }
@@ -409,22 +543,6 @@
         .footer-legal-links a:hover {
             opacity: 0.8;
             text-decoration: underline;
-        }
-
-        @keyframes bounce {
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-20px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-10px) translateX(-50%);
-            }
         }
 
         .fade-in {
@@ -438,13 +556,44 @@
             transform: translateY(0);
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in,
+            .tab-content {
+                transition: none;
+                transform: none;
+            }
+
+            .fade-in {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .hero-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-art {
+                max-width: 520px;
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
+            .hero {
+                padding: 2.5rem 0 2rem;
             }
 
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.15rem;
+            }
+
+            .chip {
+                height: 40px;
+                font-size: 0.95rem;
+                padding: 0 0.9rem;
             }
 
             .section-title {
@@ -499,54 +648,117 @@
 </nav>
 <!-- Home Tab -->
 <div id="home" class="tab-content active">
-    <section class="hero-section">
-        <h1 class="hero-title fade-in">Control4 Drivers</h1>
-        <p class="hero-subtitle fade-in">
-            We build drivers that bring more devices and services into Control4.
-            Most of them are open source and free on GitHub.
-        </p>
-        <div class="d-flex gap-3 fade-in">
-            <a href="#products" class="btn btn-outline-light" onclick="showTab('products')">See Our Drivers</a>
-            <a href="#contact" class="btn btn-outline-light" onclick="showTab('contact')">Get in Touch</a>
-        </div>
-    </section>
-    <div class="container">
-        <section class="py-5">
-            <h2 class="section-title text-center mb-5">What We Do</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="specialty-icon">
-                            <i class="bi bi-cpu"></i>
-                        </div>
-                        <h3 class="card-title">Control4 Drivers</h3>
-                        <p>Devices come into Control4 as standard lights, locks, thermostats and relays, so they work in
-                            Navigator and Control4 programming like the rest of the system.</p>
-                    </div>
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-text fade-in">
+                <h1 class="hero-title">Control4 Drivers</h1>
+                <div class="chips">
+                    <div class="chip chip-solid">On DriverCentral</div>
+                    <div class="chip chip-line">Open source</div>
+                    <div class="chip chip-line">Custom work</div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="specialty-icon">
-                            <i class="bi bi-github"></i>
-                        </div>
-                        <h3 class="card-title">Open Source</h3>
-                        <p>Most of our drivers and the Lua libraries behind them are public on GitHub, where anyone can
-                            read the code, report an issue or send a fix.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="specialty-icon">
-                            <i class="bi bi-code-square"></i>
-                        </div>
-                        <h3 class="card-title">Custom Work</h3>
-                        <p>Need a driver for something we don't cover yet? We also take on custom Control4 drivers and
-                            software projects.</p>
-                    </div>
+                <p class="hero-subtitle">We build drivers that bring more devices and services into Control4. Most are free
+                    on GitHub.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#products" class="btn btn-outline-light btn-solid" onclick="showTab('products')">See Our
+                        Drivers</a>
+                    <a href="#contact" class="btn btn-outline-light" onclick="showTab('contact')">Get in Touch</a>
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="hero-art" aria-hidden="true">
+                <svg viewBox="1380 0 660 424" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="flHubGlow"><stop offset="0" stop-color="#9AA4FF" stop-opacity="0.55"></stop><stop offset="1" stop-color="#9AA4FF" stop-opacity="0"></stop></radialGradient><linearGradient id="flLink" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9AA4FF" stop-opacity="0.9"></stop><stop offset="1" stop-color="#ffffff" stop-opacity="0.35"></stop></linearGradient></defs><g stroke="url(#flLink)" stroke-width="2.4" stroke-linecap="round"><path d="M1700 212 L1498 112"></path><path d="M1700 212 L1462 296"></path><path d="M1700 212 L1616 368"></path><path d="M1700 212 L1848 74"></path><path d="M1700 212 L1962 192"></path><path d="M1700 212 L1872 352"></path></g><g stroke="rgba(255,255,255,0.22)" stroke-width="1.8" stroke-dasharray="4 9" stroke-linecap="round"><path d="M1498 112 L1462 296"></path><path d="M1462 296 L1616 368"></path><path d="M1616 368 L1872 352"></path><path d="M1872 352 L1962 192"></path><path d="M1962 192 L1848 74"></path><path d="M1848 74 L1498 112"></path></g><g fill="#9AA4FF"><circle cx="1599" cy="162" r="4"></circle><circle cx="1581" cy="254" r="4"></circle><circle cx="1658" cy="290" r="4"></circle><circle cx="1774" cy="143" r="4"></circle><circle cx="1831" cy="202" r="4"></circle><circle cx="1786" cy="282" r="4"></circle></g><circle cx="1700" cy="212" r="130" fill="url(#flHubGlow)"></circle><circle cx="1700" cy="212" r="88" fill="none" stroke="#9AA4FF" stroke-opacity="0.45" stroke-width="1.5"></circle><circle cx="1700" cy="212" r="74" fill="#1b1d24" stroke="rgba(255,255,255,0.55)" stroke-width="2.5"></circle><image href="images/white-icon.svg" x="1674" y="166" width="53" height="92" preserveAspectRatio="xMidYMid meet"></image><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1498" cy="112" r="40"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1498 112)"><path d="M-11 2 C-19 -5 -18 -22 0 -23 C18 -22 19 -5 11 2 L9 7 H-9 Z"></path><path d="M-7 13 H7"></path><path d="M-4 18 H4"></path></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1462" cy="296" r="40"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1462 296)"><rect x="-15" y="-9" width="30" height="24" rx="5"></rect><path d="M-9 -9 V-16 A9 9 0 0 1 9 -16 V-9"></path><circle cy="3" r="2.6" fill="#fff" stroke="none"></circle></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1616" cy="368" r="34"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1616 368)"><path d="M-4 2 V-18 A4 4 0 0 1 4 -18 V2"></path><circle cy="7" r="7"></circle></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1848" cy="74" r="38"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1848 74)"><rect x="-13" y="-12" width="26" height="20" rx="5"></rect><path d="M-6 -12 V-21"></path><path d="M6 -12 V-21"></path><path d="M0 8 V16"></path></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1962" cy="192" r="40"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1962 192)"><circle r="5" fill="#fff" stroke="none"></circle><path d="M-12 -12 A17 17 0 0 0 -12 12"></path><path d="M12 -12 A17 17 0 0 1 12 12"></path><path d="M-19 -19 A27 27 0 0 0 -19 19"></path><path d="M19 -19 A27 27 0 0 1 19 19"></path></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1872" cy="352" r="38"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1872 352)"><path d="M-14 -6 H-7 L2 -14 V14 L-7 6 H-14 Z"></path><path d="M8 -7 A10 10 0 0 1 8 7"></path><path d="M13 -13 A18 18 0 0 1 13 13"></path></g></svg>
+            </div>
+        </div>
+    </section>
+    <section class="container">
+        <div id="driverBanners" class="carousel slide banner-carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Universal Zigbee 3.0"></button>
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="1" aria-label="ESPHome"></button>
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="2" aria-label="TP-Link Kasa and Tapo"></button>
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="3" aria-label="Home Connect for Apple Home"></button>
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="4" aria-label="MQTT"></button>
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="5" aria-label="InfluxDB"></button>
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="6" aria-label="Hatch"></button>
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="7" aria-label="Nuheat"></button>
+                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="8" aria-label="Schluter DITRA-HEAT"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="https://drivercentral.io/platforms/control4-drivers/utility/zigbee3/" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/zigbee3-launch.webp">
+                            <img src="images/banners/zigbee3-spotlight.webp" class="d-block w-100" alt="Universal Zigbee 3.0">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://drivercentral.io/platforms/control4-drivers/utility/esphome/" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/esphome-launch.webp">
+                            <img src="images/banners/esphome-spotlight.webp" class="d-block w-100" alt="ESPHome">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://github.com/finitelabs/control4-tplink" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/tplink-launch.webp">
+                            <img src="images/banners/tplink-spotlight.webp" class="d-block w-100" alt="TP-Link Kasa and Tapo">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://drivercentral.io/platforms/control4-drivers/utility/home-connect-for-apple-home/" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/home-connect-launch.webp">
+                            <img src="images/banners/home-connect-spotlight.webp" class="d-block w-100" alt="Home Connect for Apple Home">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://drivercentral.io/platforms/control4-drivers/utility/mqtt/" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/mqtt-launch.webp">
+                            <img src="images/banners/mqtt-spotlight.webp" class="d-block w-100" alt="MQTT">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://github.com/finitelabs/control4-influxdb" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/influxdb-launch.webp">
+                            <img src="images/banners/influxdb-spotlight.webp" class="d-block w-100" alt="InfluxDB">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://github.com/finitelabs/control4-hatch" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/hatch-launch.webp">
+                            <img src="images/banners/hatch-spotlight.webp" class="d-block w-100" alt="Hatch">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://github.com/finitelabs/control4-nuheat" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/nuheat-launch.webp">
+                            <img src="images/banners/nuheat-spotlight.webp" class="d-block w-100" alt="Nuheat">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://github.com/finitelabs/control4-schluter" target="_blank">
+                        <picture>
+                            <source media="(max-width: 767.98px)" srcset="images/banners/schluter-launch.webp">
+                            <img src="images/banners/schluter-spotlight.webp" class="d-block w-100" alt="Schluter DITRA-HEAT">
+                        </picture>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 <!-- About Tab -->
 <div id="about" class="tab-content">
@@ -743,7 +955,7 @@
         </div>
         <div class="card h-100">
             <h3 class="card-title">Custom Drivers</h3>
-            <p>Need a driver for a device or service we don't cover yet? Tell us what you want to connect.</p>
+            <p>We also build custom Control4 drivers and software. Tell us what you want to connect.</p>
             <div class="card-button-container">
                 <a href="#contact" class="btn btn-outline-light mt-3" onclick="showTab('contact')">Contact Us</a>
             </div>
@@ -1229,6 +1441,14 @@
                 submitButton.disabled = true;
                 submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
             });
+        }
+    });
+
+    // Driver banners rotate unless the visitor asked for reduced motion
+    document.addEventListener('DOMContentLoaded', function () {
+        const banners = document.getElementById('driverBanners');
+        if (banners && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            new bootstrap.Carousel(banners, {interval: 5000}).cycle();
         }
     });
 </script>
