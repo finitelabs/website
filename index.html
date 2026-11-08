@@ -276,6 +276,13 @@
             transform: translateY(0);
         }
 
+        #home.active {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .hero {
             padding: 4.5rem 0 3.5rem;
         }
@@ -356,24 +363,6 @@
 
         [data-theme="light"] .hero-art #flLink stop:last-child {
             stop-color: #15181e;
-        }
-
-        .banner-carousel {
-            padding-bottom: 3rem;
-        }
-
-        .banner-carousel img {
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-
-        .banner-carousel .carousel-indicators {
-            bottom: 0;
-            margin-bottom: 0;
-        }
-
-        .banner-carousel .carousel-indicators [data-bs-target] {
-            background-color: var(--text-color);
         }
 
         .section-title {
@@ -667,95 +656,6 @@
             </div>
             <div class="hero-art" aria-hidden="true">
                 <svg viewBox="1380 0 660 424" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="flHubGlow"><stop offset="0" stop-color="#9AA4FF" stop-opacity="0.55"></stop><stop offset="1" stop-color="#9AA4FF" stop-opacity="0"></stop></radialGradient><linearGradient id="flLink" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9AA4FF" stop-opacity="0.9"></stop><stop offset="1" stop-color="#ffffff" stop-opacity="0.35"></stop></linearGradient></defs><g stroke="url(#flLink)" stroke-width="2.4" stroke-linecap="round"><path d="M1700 212 L1498 112"></path><path d="M1700 212 L1462 296"></path><path d="M1700 212 L1616 368"></path><path d="M1700 212 L1848 74"></path><path d="M1700 212 L1962 192"></path><path d="M1700 212 L1872 352"></path></g><g stroke="rgba(255,255,255,0.22)" stroke-width="1.8" stroke-dasharray="4 9" stroke-linecap="round"><path d="M1498 112 L1462 296"></path><path d="M1462 296 L1616 368"></path><path d="M1616 368 L1872 352"></path><path d="M1872 352 L1962 192"></path><path d="M1962 192 L1848 74"></path><path d="M1848 74 L1498 112"></path></g><g fill="#9AA4FF"><circle cx="1599" cy="162" r="4"></circle><circle cx="1581" cy="254" r="4"></circle><circle cx="1658" cy="290" r="4"></circle><circle cx="1774" cy="143" r="4"></circle><circle cx="1831" cy="202" r="4"></circle><circle cx="1786" cy="282" r="4"></circle></g><circle cx="1700" cy="212" r="130" fill="url(#flHubGlow)"></circle><circle cx="1700" cy="212" r="88" fill="none" stroke="#9AA4FF" stroke-opacity="0.45" stroke-width="1.5"></circle><circle cx="1700" cy="212" r="74" fill="#1b1d24" stroke="rgba(255,255,255,0.55)" stroke-width="2.5"></circle><image href="images/white-icon.svg" x="1674" y="166" width="53" height="92" preserveAspectRatio="xMidYMid meet"></image><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1498" cy="112" r="40"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1498 112)"><path d="M-11 2 C-19 -5 -18 -22 0 -23 C18 -22 19 -5 11 2 L9 7 H-9 Z"></path><path d="M-7 13 H7"></path><path d="M-4 18 H4"></path></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1462" cy="296" r="40"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1462 296)"><rect x="-15" y="-9" width="30" height="24" rx="5"></rect><path d="M-9 -9 V-16 A9 9 0 0 1 9 -16 V-9"></path><circle cy="3" r="2.6" fill="#fff" stroke="none"></circle></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1616" cy="368" r="34"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1616 368)"><path d="M-4 2 V-18 A4 4 0 0 1 4 -18 V2"></path><circle cy="7" r="7"></circle></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1848" cy="74" r="38"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1848 74)"><rect x="-13" y="-12" width="26" height="20" rx="5"></rect><path d="M-6 -12 V-21"></path><path d="M6 -12 V-21"></path><path d="M0 8 V16"></path></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1962" cy="192" r="40"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1962 192)"><circle r="5" fill="#fff" stroke="none"></circle><path d="M-12 -12 A17 17 0 0 0 -12 12"></path><path d="M12 -12 A17 17 0 0 1 12 12"></path><path d="M-19 -19 A27 27 0 0 0 -19 19"></path><path d="M19 -19 A27 27 0 0 1 19 19"></path></g><g fill="#181a21" stroke="rgba(255,255,255,0.40)" stroke-width="2"><circle cx="1872" cy="352" r="38"></circle></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(1872 352)"><path d="M-14 -6 H-7 L2 -14 V14 L-7 6 H-14 Z"></path><path d="M8 -7 A10 10 0 0 1 8 7"></path><path d="M13 -13 A18 18 0 0 1 13 13"></path></g></svg>
-            </div>
-        </div>
-    </section>
-    <section class="container">
-        <div id="driverBanners" class="carousel slide banner-carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Universal Zigbee 3.0"></button>
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="1" aria-label="ESPHome"></button>
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="2" aria-label="TP-Link Kasa and Tapo"></button>
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="3" aria-label="Home Connect for Apple Home"></button>
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="4" aria-label="MQTT"></button>
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="5" aria-label="InfluxDB"></button>
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="6" aria-label="Hatch"></button>
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="7" aria-label="Nuheat"></button>
-                <button type="button" data-bs-target="#driverBanners" data-bs-slide-to="8" aria-label="Schluter DITRA-HEAT"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="https://drivercentral.io/platforms/control4-drivers/utility/zigbee3/" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/zigbee3-launch.webp">
-                            <img src="images/banners/zigbee3-spotlight.webp" class="d-block w-100" alt="Universal Zigbee 3.0">
-                        </picture>
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://drivercentral.io/platforms/control4-drivers/utility/esphome/" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/esphome-launch.webp">
-                            <img src="images/banners/esphome-spotlight.webp" class="d-block w-100" alt="ESPHome">
-                        </picture>
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://github.com/finitelabs/control4-tplink" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/tplink-launch.webp">
-                            <img src="images/banners/tplink-spotlight.webp" class="d-block w-100" alt="TP-Link Kasa and Tapo">
-                        </picture>
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://drivercentral.io/platforms/control4-drivers/utility/home-connect-for-apple-home/" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/home-connect-launch.webp">
-                            <img src="images/banners/home-connect-spotlight.webp" class="d-block w-100" alt="Home Connect for Apple Home">
-                        </picture>
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://drivercentral.io/platforms/control4-drivers/utility/mqtt/" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/mqtt-launch.webp">
-                            <img src="images/banners/mqtt-spotlight.webp" class="d-block w-100" alt="MQTT">
-                        </picture>
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://github.com/finitelabs/control4-influxdb" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/influxdb-launch.webp">
-                            <img src="images/banners/influxdb-spotlight.webp" class="d-block w-100" alt="InfluxDB">
-                        </picture>
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://github.com/finitelabs/control4-hatch" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/hatch-launch.webp">
-                            <img src="images/banners/hatch-spotlight.webp" class="d-block w-100" alt="Hatch">
-                        </picture>
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://github.com/finitelabs/control4-nuheat" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/nuheat-launch.webp">
-                            <img src="images/banners/nuheat-spotlight.webp" class="d-block w-100" alt="Nuheat">
-                        </picture>
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://github.com/finitelabs/control4-schluter" target="_blank">
-                        <picture>
-                            <source media="(max-width: 767.98px)" srcset="images/banners/schluter-launch.webp">
-                            <img src="images/banners/schluter-spotlight.webp" class="d-block w-100" alt="Schluter DITRA-HEAT">
-                        </picture>
-                    </a>
-                </div>
             </div>
         </div>
     </section>
@@ -1441,14 +1341,6 @@
                 submitButton.disabled = true;
                 submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
             });
-        }
-    });
-
-    // Driver banners rotate unless the visitor asked for reduced motion
-    document.addEventListener('DOMContentLoaded', function () {
-        const banners = document.getElementById('driverBanners');
-        if (banners && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            new bootstrap.Carousel(banners, {interval: 5000}).cycle();
         }
     });
 </script>
